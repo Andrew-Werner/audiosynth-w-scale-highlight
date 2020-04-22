@@ -5,7 +5,8 @@ function AudioSynthView() {
 
 	var __audioSynth = new AudioSynth();
 	__audioSynth.setVolume(0.5);
-	var __octave = 2;
+	var __octave = 1;
+  var absOctaveRange = 0;
 
 	// Change octave
 	var fnChangeOctave = function(x) {
@@ -23,8 +24,8 @@ function AudioSynthView() {
 			octaveName[i].innerHTML = (val + __octave);
 		}
 
-		document.getElementById('OCTAVE_LOWER').innerHTML = __octave-1;
-		document.getElementById('OCTAVE_UPPER').innerHTML = __octave+1;
+		document.getElementById('OCTAVE_LOWER').innerHTML = __octave-absOctaveRange;
+		document.getElementById('OCTAVE_UPPER').innerHTML = __octave+absOctaveRange;
 
 	};
 
@@ -125,7 +126,7 @@ function AudioSynthView() {
 		var iWhite = 0;
 		var notes = __audioSynth._notes;
 
-		for(var i=0;i<=0;i++) {
+		for(var i=0-absOctaveRange;i<=0+absOctaveRange;i++) {
 			for(var n in notes) {
 				if(n[2]!='b') {
 					var thisKey = document.createElement('div');
@@ -300,8 +301,8 @@ function AudioSynthView() {
 
 	window.addEventListener('keydown', fnPlayKeyboard);
 	window.addEventListener('keyup', fnRemoveKeyBinding);
-	document.getElementById('-_OCTAVE').addEventListener('click', function() { fnChangeOctave(-1); });
-	document.getElementById('+_OCTAVE').addEventListener('click', function() { fnChangeOctave(1); });
+	document.getElementById('-_OCTAVE').addEventListener('click', function() { fnChangeOctave(-absOctaveRange); });
+	document.getElementById('+_OCTAVE').addEventListener('click', function() { fnChangeOctave(absOctaveRange); });
 
 	Object.defineProperty(this, 'draw', {
 		value: fnCreateKeyboard
