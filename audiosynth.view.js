@@ -125,9 +125,8 @@ function AudioSynthView() {
 		var iWhite = 0;
 		var notes = __audioSynth._notes;
 
-		for(var i=-1;i<=1;i++) {
+		for(var i=0;i<=0;i++) {
 			for(var n in notes) {
-        console.log(n[1],n[2],n[3])
 				if(n[2]!='b') {
 					var thisKey = document.createElement('div');
 					if(n.length>1) {
