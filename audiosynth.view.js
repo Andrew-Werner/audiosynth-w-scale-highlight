@@ -5,8 +5,7 @@ function AudioSynthView() {
 
 	var __audioSynth = new AudioSynth();
 	__audioSynth.setVolume(0.5);
-	var __octave = 1;
-  var absOctaveRange = 0;
+	var __octave = 2;
 
 	// Change octave
 	var fnChangeOctave = function(x) {
@@ -15,8 +14,6 @@ function AudioSynthView() {
 
 		__octave += x;
 
-		__octave = Math.min(5, Math.max(3, __octave));
-
 		var octaveName = document.getElementsByName('OCTAVE_LABEL');
 		var i = octaveName.length;
 		while(i--) {
@@ -24,8 +21,8 @@ function AudioSynthView() {
 			octaveName[i].innerHTML = (val + __octave);
 		}
 
-		document.getElementById('OCTAVE_LOWER').innerHTML = __octave-absOctaveRange;
-		document.getElementById('OCTAVE_UPPER').innerHTML = __octave+absOctaveRange;
+		document.getElementById('OCTAVE_LOWER').innerHTML = __octave;
+		document.getElementById('OCTAVE_UPPER').innerHTML = __octave;
 
 	};
 
@@ -126,7 +123,7 @@ function AudioSynthView() {
 		var iWhite = 0;
 		var notes = __audioSynth._notes;
 
-		for(var i=0-absOctaveRange;i<=0+absOctaveRange;i++) {
+		for(var i=0;i<=0;i++) {
 			for(var n in notes) {
 				if(n[2]!='b') {
 					var thisKey = document.createElement('div');
