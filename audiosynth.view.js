@@ -5,7 +5,7 @@ function AudioSynthView() {
 
 	var __audioSynth = new AudioSynth();
 	__audioSynth.setVolume(0.5);
-	var __octave = 4;
+	var __octave = 2;
 
 	// Change octave
 	var fnChangeOctave = function(x) {
