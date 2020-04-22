@@ -14,6 +14,8 @@ function AudioSynthView() {
 
 		__octave += x;
 
+		__octave = Math.min(4, Math.max(2, __octave));
+
 		var octaveName = document.getElementsByName('OCTAVE_LABEL');
 		var i = octaveName.length;
 		while(i--) {
@@ -298,8 +300,8 @@ function AudioSynthView() {
 
 	window.addEventListener('keydown', fnPlayKeyboard);
 	window.addEventListener('keyup', fnRemoveKeyBinding);
-	document.getElementById('-_OCTAVE').addEventListener('click', function() { fnChangeOctave(-absOctaveRange); });
-	document.getElementById('+_OCTAVE').addEventListener('click', function() { fnChangeOctave(absOctaveRange); });
+	document.getElementById('-_OCTAVE').addEventListener('click', function() { fnChangeOctave(-1); });
+	document.getElementById('+_OCTAVE').addEventListener('click', function() { fnChangeOctave(1); });
 
 	Object.defineProperty(this, 'draw', {
 		value: fnCreateKeyboard
